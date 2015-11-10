@@ -1,0 +1,92 @@
+/*_а Написать функцию, которая получает в качестве аргументов целое положительное
+ *число и систему счисления, в которую это число должно переводится (системы счисления от 2 до 36). 
+ *Например, при переводе числа 27 в систему счисления 16 должно получиться 1B; 
+ *13 в 5-ю - 23; 35 в 18-ю - 1H.  
+ */
+
+package lesson8;
+import java.util.Scanner;
+
+public class Notation {
+
+	private static Scanner readParams;
+	static boolean correctChoise, correctSystem = false;
+	
+	static int x;	//_а Вводимое число
+	static int y;	//_а Система исчисления
+	
+	static String s ="";	//_а Конечный вывод числа в формате строки
+		
+	//_а Метод переводит из 10-ричной в другую систему счисления
+	static void f1(int number, int system) {
+		//System.out.println("Число = " + number + "\nСистема исчисления: " + system);
+		
+		while (number > 0) {
+			String result = Integer.toString(number%system);
+						
+				switch (result) {
+					
+					case "10": result = "A"; break;
+					case "11": result = "B"; break;
+					case "12": result = "C"; break;
+					case "13": result = "D"; break;
+					case "14": result = "E"; break;
+					case "15": result = "F"; break;
+					case "17": result = "H"; break;
+					//_а и так далее
+								
+				}
+			
+			//System.out.println(result); //_а Можна показывать, как получается результат пошагово
+			s = result + s;
+			
+			number /= system;
+				
+		}
+		System.out.println(s);
+	}
+	
+	public static void main(String[] args) {
+		
+		//_а Повтор запроса ввода ==числа== при неправильном формате
+		while (!correctChoise) {
+			System.out.print("Введите число: ");	
+			readParams = new Scanner(System.in);	
+			
+			//_а Проверка типа вводимых данных - тип данных iNTEGER
+			if (readParams.hasNextInt()) {
+				correctChoise = true;
+				x = readParams.nextInt();
+				//System.out.println("Вы ввели число = " + x);
+				
+				//_а Повтор запроса ввода ==Системы Исчисления== при неправильном формате
+				while (!correctSystem) {
+					System.out.print("Введите систему исчисления: ");	
+					readParams = new Scanner(System.in);	
+					
+					//_а Проверка типа вводимых данных - тип данных iNTEGER
+					if (readParams.hasNextInt()) {
+						correctSystem = true;
+						y = readParams.nextInt();
+						//System.out.println("Система исчисления : " + y);
+							
+						
+					} else {
+						System.out.println("Неверный формат системы исчисления!");
+						correctSystem = false;
+					}
+				}
+
+				
+			} else {
+				System.out.println("Неверный формат числа!");
+				correctChoise = false;
+			}
+		}		
+		
+		//_а Собственно запуск программы
+		f1(x, y);
+	
+	}
+
+}
