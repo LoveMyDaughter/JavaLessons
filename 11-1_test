@@ -1,0 +1,110 @@
+//_а Тест
+
+package testCode;
+
+public class Disks1 {
+	
+	//_а Длина массивов (количество дисков на столпе)
+	private static int length = 5;
+	
+	private static Integer[] first, second, third;
+	
+	//_а Метод - показ состояния массивов
+	static void showArrays(Integer[] array1, Integer[] array2, Integer[] array3) {
+		
+		first = array1;
+		second = array2;
+		third = array3;
+		
+		for (int i=0; i<length; i++) {
+			System.out.print(first[i] + " ");
+			System.out.print(second[i] + " ");
+			System.out.print(third[i] + " ");
+			System.out.println();
+		}
+	}
+	
+
+	public static void main(String[] args) {
+
+		//_а Массивы Integer
+		Integer[] first = {1, 2, 3, 4, 5};
+		Integer[] second = {0, 0, 0, 0 ,0};
+		Integer[] third = {0, 0, 0, 0 ,0};
+				
+/*		
+		//_а показать начальное состояние массивов
+		for (int i=0; i<length; i++) {
+			System.out.print(first[i] + " ");
+			System.out.print(second[i] + " ");
+			System.out.print(third[i] + " ");
+			System.out.println();
+		}
+		
+		System.out.println();
+*/
+		
+		
+		showArrays(first, second, third);
+			System.out.println();	//_а Отделение пустой строкой
+		
+			
+		//_а Текущие позиции каждого массива (номера дисков)	
+			int firstCount = 0;		//_а Первого - сверху
+			int secondCount = length-1;		//_а Второго - снизу	
+			int thirdCount = length-1;		//_а Третьего - снизу
+		
+		//а Берем диск с Первого
+		for (int i=0; i<5; i++) {
+			
+			//а Если Третий пустой
+			if ( third[length-1]==0 ) {
+			
+				third[thirdCount] = first[firstCount];		//_а Переложить диск с Первого на Третий
+				first[firstCount] = 0;
+				firstCount++;		//_а Снимаем 1 диск
+				thirdCount-- ;		//_а Добавляем 1 диск
+								   
+			} else 
+				
+				//а Если Второй пустой
+				if ( second[length-1]==0 ) {
+				
+				second[secondCount] = first[firstCount];		//_а Переложить диск с Первого на Второй
+				first[firstCount] = 0;
+				firstCount++;		//_а Снимаем 1 диск
+				secondCount--;		//_а Добавляем 1 диск
+				
+			} else
+				
+				//_а Если на Третьем меньший диск, чем на Втором
+				if (third[thirdCount+1] < second[secondCount+1]) {
+										
+					second[secondCount] = third[thirdCount+1];		//_а Переложить диск с Третьего на Второй
+					secondCount--;		//_а Добавляем 1 диск
+					third[thirdCount+1] = 0;
+					thirdCount++;		//_а Снимаем 1 диск
+										
+				} else
+			
+				//_а Если на Втором меньший диск, чем на Третьем
+				if (second[secondCount] < third[thirdCount]) {
+					
+					third[thirdCount] = second[secondCount+1];		//_а Переложить диск со Второго на Третий
+					thirdCount--;		//_а Добавляем 1 диск
+					second[secondCount+1] = 0;
+					secondCount++;		//_а Снимаем 1 диск
+					
+				}
+			
+			
+			showArrays(first, second, third);
+				System.out.println();	//_а Отделение пустой строкой
+		}
+			
+				
+		
+		
+	}
+
+}
