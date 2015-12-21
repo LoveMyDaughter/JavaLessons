@@ -1,0 +1,108 @@
+package lesson12;
+
+/*_а Даны два массива : А[n] и B[m]. Необходимо создать третий массив, в котором нужно собрать: 
+	1. Элементы обоих массивов; 
+	2. Общие элементы двух массивов; 
+	3. Элементы массива A, которые не включаются в B; 
+	4. Элементы массива B, которые не включаются в A; 
+	5. Элементы массивов A и B, коотрые не являются общими дял них (то есть объединение результатов двух предыдущих вариантов). 
+*/
+//_а ДОРАБОТАТЬ: 1. Создать методы наполнения списков
+
+import java.util.ArrayList;
+
+public class MergeAndHandling {
+
+	public static void main(String[] args) {
+		
+		//_а Входащие списки aList и bList 
+		ArrayList <Integer> aList = new ArrayList();
+		ArrayList <Integer> bList = new ArrayList();
+		
+		//_а Исходящие списки
+		ArrayList <Integer> outList = new ArrayList();
+		ArrayList <Integer> cloneList;
+
+		//_а Наполняем aList		
+		aList.add(15);	aList.add(-8); aList.add(2); aList.add(1); aList.add(-25); aList.add(4); aList.add(9);
+				
+		//_а Наполняем bList		
+		bList.add(10); bList.add(2); bList.add(-2); bList.add(1);  bList.add(-5); bList.add(17); bList.add(7); bList.add(3); bList.add(15);
+		
+		
+		
+		//_а Показать списки
+		System.out.println("Первый список: \n" + aList);
+     	//System.out.println("Количество элементов = " + aList.size());
+		  
+		System.out.println("Второй список: \n" + bList);
+		//System.out.println("Количество элементов = " + bList.size());
+		
+		
+		
+		
+		//_а Объединяем список bList и aList
+		cloneList = (ArrayList)aList.clone();
+		cloneList.addAll(bList);
+				
+		System.out.println("1. Элементы обоих списков вместе: \n" +cloneList);
+
+		
+		
+		
+		//_а Общие элементы обоих списков
+		cloneList = (ArrayList)aList.clone();
+		cloneList.retainAll(bList);
+		System.out.println("2. Общие элементы обоих списков: \n" + cloneList);
+				
+				
+		//_а Элементы aList, которые не включаются в bList
+		cloneList = (ArrayList)aList.clone();
+		
+		for (int i=0; i<cloneList.size(); i++) {
+			
+			for (int j=0; j<bList.size(); j++) {
+				
+				if (bList.get(j)==cloneList.get(i)) 
+					cloneList.remove(i);
+			}
+		}
+		System.out.println("3. Элементы aList, которые не включаются в bList: \n" +cloneList);
+		
+		
+		
+		//_а Элементы bList, которые не включаются в aList
+		cloneList = (ArrayList)bList.clone();
+		
+		for (int i=0; i<aList.size(); i++) {
+			
+			for (int j=0; j<cloneList.size(); j++) {
+				
+				if (cloneList.get(j)==aList.get(i))
+					cloneList.remove(j);
+			}
+		}
+		System.out.println("4. Элементы bList, которые не включаются в aList: \n" +cloneList);
+		
+		
+			
+		//_а Элементы aList и bList, которые не являются общими 
+		for (int i=0; i<aList.size(); i++) {
+			
+			for (int j=0; j<bList.size(); j++) {
+				
+				if (bList.get(j)==aList.get(i)) {
+					bList.remove(j);
+					aList.remove(i);
+				}	
+			}
+		}
+		
+		outList.addAll(aList);
+		outList.addAll(bList);
+		System.out.println("5. Элементы aList и bList, которые не являются общими: \n" +outList);
+	
+		
+	}
+
+}
