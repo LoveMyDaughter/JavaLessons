@@ -7,7 +7,7 @@ package lesson12;
 	4. Элементы массива B, которые не включаются в A; 
 	5. Элементы массивов A и B, коотрые не являются общими дял них (то есть объединение результатов двух предыдущих вариантов). 
 */
-//_а ДОРАБОТАТЬ: 1. Создать методы наполнения списков
+		 
 
 import java.util.ArrayList;
 
@@ -25,6 +25,7 @@ public class MergeAndHandling {
 
 		//_а Наполняем aList		
 		aList.add(15);	aList.add(-8); aList.add(2); aList.add(1); aList.add(-25); aList.add(4); aList.add(9);
+		
 				
 		//_а Наполняем bList		
 		bList.add(10); bList.add(2); bList.add(-2); bList.add(1);  bList.add(-5); bList.add(17); bList.add(7); bList.add(3); bList.add(15);
@@ -57,32 +58,31 @@ public class MergeAndHandling {
 				
 				
 		//_а Элементы aList, которые не включаются в bList
-		cloneList = (ArrayList)aList.clone();
-		
-		for (int i=0; i<cloneList.size(); i++) {
-			
-			for (int j=0; j<bList.size(); j++) {
+		cloneList.clear();
 				
-				if (bList.get(j)==cloneList.get(i)) 
-					cloneList.remove(i);
-			}
+		for (int i=0; i<aList.size(); i++) {
+						
+				if (! bList.contains(aList.get(i)))  
+					cloneList.add(aList.get(i));
+						
 		}
 		System.out.println("3. Элементы aList, которые не включаются в bList: \n" +cloneList);
 		
 		
 		
-		//_а Элементы bList, которые не включаются в aList
-		cloneList = (ArrayList)bList.clone();
 		
-		for (int i=0; i<aList.size(); i++) {
+		
+		
+		//_а Элементы bList, которые не включаются в aList
+		cloneList.clear();
+		
+		for (int i=0; i<bList.size(); i++) {
 			
-			for (int j=0; j<cloneList.size(); j++) {
-				
-				if (cloneList.get(j)==aList.get(i))
-					cloneList.remove(j);
-			}
+			if (! aList.contains(bList.get(i)) )
+					cloneList.add(bList.get(i));
+			
 		}
-		System.out.println("4. Элементы bList, которые не включаются в aList: \n" +cloneList);
+		System.out.println("4. Элементы bList, которые не включаются в aList: \n" + cloneList);
 		
 		
 			
@@ -101,7 +101,8 @@ public class MergeAndHandling {
 		outList.addAll(aList);
 		outList.addAll(bList);
 		System.out.println("5. Элементы aList и bList, которые не являются общими: \n" +outList);
-	
+		System.out.println();
+		
 		
 	}
 
