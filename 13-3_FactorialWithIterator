@@ -1,0 +1,68 @@
+package lesson13;
+
+/*_а Найти факториал числа.
+Использовать Generic, ввод чисел с консоли, обработку try-catch
+Числа должны быть объектами
+*/
+
+//_а ДОРАБОТАТЬ: убрать <T> из объявления класса, почистить от лишних экземпляров
+
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class FactorialWithIterator <T> {
+
+	private LinkedList <Integer> factorialList;
+	
+	private Scanner readNumber;
+	private String inputNumber;
+	private Integer number, factorial;
+	
+	public static void main(String[] args) {
+				
+		//_а Экземпляры класса FactorialWithIterator 
+		//_а Создавая экземпляры, можем отслеживать значения переменных в отладчике
+		FactorialWithIterator <String> stringFactorialWithIterator = new FactorialWithIterator();
+		FactorialWithIterator <Scanner> scannerFactorialWithIterator = new FactorialWithIterator();
+		FactorialWithIterator <Integer> integerFactorialWithIterator = new FactorialWithIterator();
+		
+		integerFactorialWithIterator.factorialList = new LinkedList();
+				
+		//_а Создаем Итератор для списка
+		ListIterator iterFactorialList = integerFactorialWithIterator.factorialList.listIterator();
+		
+		
+		//_а Присвоить начальное значение для возможности прохода по циклу - расчета факториала
+		integerFactorialWithIterator.factorial = 1;
+				
+		scannerFactorialWithIterator.readNumber = new Scanner(System.in);
+		
+		System.out.println("Введите число : ");
+		stringFactorialWithIterator.inputNumber = scannerFactorialWithIterator.readNumber.nextLine();
+		
+					
+		//_а //_а Если введенное с консоли - число
+		//_а переводим его в тип int
+		try {
+			integerFactorialWithIterator.number = Integer.parseInt(stringFactorialWithIterator.inputNumber);
+			 
+			//_а Вычисление факториала
+			for (int i=1; i<=integerFactorialWithIterator.number; i++) {
+			
+				iterFactorialList.add(i);
+				iterFactorialList.previous();
+				System.out.println(iterFactorialList.next());
+				
+				integerFactorialWithIterator.factorial *= integerFactorialWithIterator.factorialList.get(i-1);
+										
+			}
+			System.out.println(integerFactorialWithIterator.factorial);
+							
+		} catch (NumberFormatException e) {
+			System.out.println("Вы ввели не целое число!");
+		}
+		
+	}
+
+}
