@@ -1,0 +1,45 @@
+package lesson17;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/*  1. Вводим с клавиатуры параметры компонентов ПК
+ *  2. Компонируем с этих параметров число в 2-ичной системе
+ *  3. Переводим число в 10-ричную систему и выводим
+ */
+
+public class PcParams {
+
+	public static void main(String[] args) {
+		try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in))) {
+			System.out.println("Выберите корпус ПК: AT – 0, ATX – 1");
+			String pcCase = bufReader.readLine();
+			System.out.println("Выбирите видеокарту: на борту – 0, карта – 1");
+			String videocard = bufReader.readLine();
+			System.out.println("Выбирите CPU: <i3 - 0, >=i3 - 1");
+			String cpu = bufReader.readLine();
+			System.out.println("Выбирите тип ОЗУ: <DDR3 - 0, >= DDR3 - 1");
+			String memoryType = bufReader.readLine();
+			System.out.println("Выбирите размер ОЗУ: <4Gb - 0, >=4Gb - 1");
+			String memorySize = bufReader.readLine();
+			System.out.println("Выбирите тип HDD: ide - 0, sata - 1");
+			String hddType = bufReader.readLine();
+			System.out.println("Выбирите размер HDD: <500Gb - 0, >=500Gb -1");
+			String hddSize = bufReader.readLine();
+			System.out.println("Выбирите привод: нет - 0, есть - 1");
+			String odd = bufReader.readLine();
+			
+			String pcParams = pcCase + videocard + cpu + memoryType + memorySize+ hddType + hddSize + odd;
+//			System.out.println(pcParams);
+			System.out.println("Конфигурация ПК одним 10-ричным числом \n" + Integer.parseInt(pcParams, 2));
+			
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
+		
+
+	}
+
+}
