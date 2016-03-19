@@ -34,10 +34,13 @@ public class PcParams {
 //			System.out.println(pcParams);
 			System.out.println("Конфигурация ПК одним 10-ричным числом \n" + Integer.parseInt(pcParams, 2));
 			
-		} catch (IOException e) {			
-			e.printStackTrace();
+		} catch (NumberFormatException e) {			
+			System.out.println("Неверный ввод!");
 		}
 		
+		catch (IOException e1) {			
+			e1.printStackTrace();
+		}
 		
 
 	}
