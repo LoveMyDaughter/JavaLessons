@@ -1,0 +1,94 @@
+package lesson18;
+
+/*	Создать программу, фильтрующую текст, введенный с клавиатуры. Задача программы 
+ * заключается в считывании текста и отбражении его на экране , используя замену 
+ * заданного набора символов на пробелы. Программа должна предлагать следующие варианты 
+ * наборов символов для фильтрации: 
+ *  Символы латинского алфавита 
+ *  Символы кириллицы 
+ *  Символы пунктуации 
+ *  Цифры 
+ *  Фильтры могут накладываться последовательно. При повторной установке существующего 
+ *  фильтра данный фильтр должен сниматься. 
+ */
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.stream.Stream;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+
+public class FilterText {
+	
+	public static void main(String[] args) {
+		
+		File file = new File("d:\\test.txt");
+		
+		System.out.println("Считываем текст из файла: " + file.getAbsolutePath());
+		
+		System.out.println("\n==========\n");
+
+		// "добираемся" до текста из файла через BufferedReader 
+		try (BufferedReader bufReader = new BufferedReader(
+				new InputStreamReader (new FileInputStream(file)))) {
+			
+			// поток строк
+			Stream <String> stringsOfFile = bufReader.lines();
+			
+			/* так можно просто вывести все строки
+			*  strings.forEach(System.out::println);			
+			*/
+			
+			// переводим поток в массив строк
+			String [] stringArray = stringsOfFile.toArray(String[]::new);
+			
+			// фильтр знаков пунктуации
+			String symbol = ",.;:!?-";
+			
+			
+			
+			// для каждой строки, взятой из файла:
+			for (String str : stringArray) {				
+				char [] charsOfLine = str.toCharArray();	// переводим строку в массив символов
+				String exitString = "";
+				
+				// для каждого символа строки
+				for (char c : charsOfLine) {
+					for (int i=0; i<symbol.length(); i++) {
+						
+						// замена символа пробелом 
+						if (c == symbol.charAt(i)) {
+							c = ' ';
+							break;
+						}
+						
+					}	
+					
+					// наполняем новою строку символами текущей строки
+					// с заменой на пробелы знаков пунктуации
+					exitString += c;	
+				}
+				System.out.println(exitString);
+			}
+						
+		} catch (IOException e) {
+			
+		}
+		
+		
+			
+//			System.out.println("Латиница - фильтровать?");
+//			boolean latinFilter = false;
+
+		
+		
+		
+		
+	}
+
+	
+	
+	
+	
+}
