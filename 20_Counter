@@ -1,0 +1,84 @@
+package lesson20;
+
+/* Цифровой счетчик, это переменная с ограниченным диапазоном. 
+ * Значение которой сбрасывается, когда ее целочисленное значение достигает 
+ * определенного максимума (например, k принимает значения в диапазоне от 0..100). 
+ * В качестве примера такого счетчика можно привести цифровые часы, счетчик километража. 
+ * Опишите класс такого счетчика. Обеспечьте возможность установления максимального и 
+ * минимального значений, увелечения счетчика на 1, возвращения текущего значения. 
+ */
+ 
+
+public class Counter {	
+
+	int minId = 0;
+	int id;		// счётчик
+	int maxId = Integer.MAX_VALUE;
+		
+	public static void main(String[] args) {
+		Counter counter = new Counter();
+		
+		counter.setMinId(2);
+		System.out.println(counter.getId());
+		
+		counter.setMaxId(6);
+				
+		counter.increment();
+		System.out.println(counter.getId());
+		counter.increment();
+		System.out.println(counter.getId());		
+		counter.increment();
+		System.out.println(counter.getId());
+		counter.increment();
+		System.out.println(counter.getId());
+		counter.increment();
+		System.out.println(counter.getId());		
+		counter.increment();
+		System.out.println(counter.getId());
+		counter.increment();
+		System.out.println(counter.getId());
+		counter.increment();
+		System.out.println(counter.getId());		
+		counter.increment();
+		System.out.println(counter.getId());
+
+	}
+	
+	// установить min значение
+	public void setMinId(int minValue) {
+		if (minValue >= maxId) {
+			System.out.println("Минимальное значение должно быть < максимального");
+		} else {
+			minId = minValue;
+		}	
+	}
+	
+	// установить max значение
+	public void setMaxId(int maxValue) {
+		if (maxValue <= minId) {
+			System.out.println("Максимальное значение должно быть > миниимального");
+		} else {
+			maxId = maxValue;
+		}	
+	}
+	
+	// текущее значение
+	public int getId(){
+		if (id < minId) {
+			id = minId;
+		} 
+		return id;
+	}
+	
+	// увеличить счётчик на 1
+	public void increment() {
+		// сброс счётчика
+		if ((id < minId) || (id >= maxId)) {
+			id = minId-1;
+		}
+		id++;
+		
+	}
+		
+
+}
