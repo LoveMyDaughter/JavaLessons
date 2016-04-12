@@ -1,0 +1,13 @@
+package lesson20;
+
+public class Student {
+	
+	String firstName;
+	String lastName;
+
+	Student(String name, String secondName){
+		firstName = name;
+		lastName = secondName;		
+	}
+
+}
