@@ -1,0 +1,85 @@
+package lesson23;
+
+/*  Создайте класс динамического массива, в котором реализована проверка выхода 
+ * за границы массива. Перегрузите операторы: [ ], =, +, -,++ (добавление элемента 
+ * в конец массива), -- (удаление элемента из конца массива). 
+ * 
+ *  Создаём свой класс ArrayList, в котором перегружаем методы:
+ *  add();
+ *  add(int pos, Element e);
+ *  set();
+ *  remove();
+ */
+
+import java.util.ArrayList;
+
+public class ArrayListChanged extends ArrayList<Object>{
+	
+
+	@Override
+	public boolean add(Object e){
+		super.add(e);	// вызов метода суперкласса можно здесь
+		System.out.println("Добавлен элемент " + e);
+		return true;		
+	}
+	
+	
+	// если добавляемый элемент находится за границами коллекции, то
+	// расширяем её до нужного размера, и добавляем этот элемент
+	@Override
+	public void add(int pos, Object e){
+		try {
+			super.add(pos, e);	// вызов метода суперкласса
+		} catch (IndexOutOfBoundsException outE) {
+			
+			System.out.println("Расширяем до размера " + pos);
+			while (this.size() < (pos+1)) {
+				super.add(null);
+			}
+			super.set(pos, e);
+		}
+		System.out.println("Позиция: " + pos + " Добавлен элемент " + e);				
+	}
+	
+	@Override
+	public Object set(int pos, Object e) {
+		System.out.println("Установить в позицию " + pos + " элемент " + e);		
+		return e;
+	}
+	
+	@Override
+	public Object remove(int pos) {
+		System.out.println("Удалить позицию " + pos);		
+		return this;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		ArrayListChanged changed = new ArrayListChanged();		
+		
+		changed.add("First Element");	// переопреденённый метод
+		System.out.println(changed);
+		
+		changed.add(4, "Added");	// переопреденённый метод
+		System.out.println(changed);
+		
+//		changed.set(2, 35.143);
+//		System.out.println(changed);	// переопреденённый метод
+//		
+//		changed.remove(1);
+//		System.out.println(changed);	// переопреденённый метод
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
