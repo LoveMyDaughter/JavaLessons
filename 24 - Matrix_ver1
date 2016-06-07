@@ -1,0 +1,73 @@
+package lesson24;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/*  Создать класс для работы с матрицами. Предусмотреть, как минимум, функции для 
+ * - сложения матриц, 
+ * - умножения матриц, 
+ * - транспонирования матриц, 
+ * - присваивания матриц друг другу, 
+ * - установка и получение произвольного элемента матрицы. 
+ * Необходимо перегрузить соответствующие операторы.
+ */
+
+public class Matrix {
+	
+	// размерность матрицы
+	int x = 8, y = 5;
+	
+	// строка матрицы
+	ArrayList <Integer> listY = new ArrayList();
+
+	// столбец матрицы - вся матрица
+	ArrayList <ArrayList<Integer> > listX = new ArrayList();
+	
+	Random random = new Random();
+	
+	public Matrix() {
+		for (int i = 0; i < this.x; i++) {
+			listX.add(listY);
+			for (int j = 0; j < this.y; j ++) {
+				listX.get(i).add(random.nextInt(10));
+			}
+		}
+	}
+	
+	// метод установки произвольного элемента матрицы
+	public void setElement(int x, int y, int value) {
+		listY.set(2, value);
+		
+	}
+	
+	// метод получения произвольного элемента матрицы
+	public int getElement(int x, int y)
+	{
+		ArrayList <Integer> posX  = listX.get(x);
+		Integer posY = posX.get(y);
+		return posY;
+	}
+	
+		
+	
+	public void showMatrix() {
+		for (int i = 0; i < this.x; i++) {
+			for (int j = 0; j < this.y; j++) {
+				System.out.println(listX.get(j).get(i));
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		
+		Matrix matrix = new Matrix();
+		matrix.showMatrix();
+		
+		//matrix.setElement(0, 0, 1986);
+		
+		//System.out.println(matrix.getElement(2, 1));
+
+	}
+
+}
