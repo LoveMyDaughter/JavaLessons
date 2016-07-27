@@ -1,0 +1,12 @@
+package lesson25;
+
+public class Game {
+	
+	BlackJack playerPc = new BlackJack(false);
+	BlackJack player1 = new BlackJack(true, "Антон");
+	
+	
+	
+	
+
+}
