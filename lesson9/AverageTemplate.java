@@ -1,0 +1,61 @@
+//_а Написать шаблон метода для поиска среднего арифметического значений массива. 
+//_а ДОРАБОТАТЬ:	Добавить проверку типа входного массива 
+
+
+package lesson9;
+
+import java.lang.reflect.Array;
+
+public class AverageTemplate {
+		
+	//_а Метод-шаблон
+			static <T> void getAverageOfArray (T array) {	//_а На вход получаем массив (или даже не массив) любого типа
+				
+				//_а Проверка, являются ли входящие данные массивом
+				if (! array.getClass().isArray()) {
+					System.out.println(String.valueOf(array));
+	            } 
+				else {
+				
+					Object element;	//_а Элемент массива любого типа
+					double sum = 0;
+					double average;	//_а Среднее арифметическое
+					double doubleElement;
+					String stringElement;
+					
+					int length = Array.getLength(array);	//_а Длина массива
+					//System.out.println("Длина массива = " + length);
+					
+					for (int i=0; i<length; i++) {
+						element = Array.get(array, i);
+						System.out.println(element);	//_а Вывод элементов для наглядности
+						
+						stringElement = element.toString();
+						doubleElement = Double.parseDouble(stringElement);
+											
+						sum += doubleElement;	//_а Сумма элементов массива
+					}
+					average = sum/length;
+					System.out.println("Среднее арифметическое = " + average);
+				}
+			}
+				
+	public static void main(String[] args) {
+		//_а Масивы разных типов
+			Integer[] intArray = {1,1,100, 2, 17, 8, 32, 15, 3};	//_а average 22
+			String[] stringArray ={"Один", "два", "три", "четыре", "пять"};
+			Byte[] byteArray = {2,3,0,3,8,8,0,5,12,27,40,65,33,2};	//_а average 14.857
+			Double[] doubleArray = {2.21, 0.123, 271.44};	//_а average 91.258
+			Double[] doubleArrayTest = {};	//_а Тестовый масив
+		//	
+		
+		//_а Вызов метода
+			getAverageOfArray(intArray);
+			//getAverageOfArray(stringArray);
+			//getAverageOfArray(byteArray);
+			//getAverageOfArray(doubleArray);
+			//getAverageOfArray(12);
+		
+	}
+
+}

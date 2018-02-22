@@ -1,0 +1,94 @@
+package lesson8;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Throws {
+
+	DrawCubes draw = new DrawCubes();
+	
+	private Scanner readEnter = new Scanner(System.in);
+	Random random = new Random();
+	
+	String gamerName = "user";
+	int throwFirstCube, throwSecondCube;	//_а Герерируем значения обоих кубиков
+	int sum = 0;
+	
+	//_а Бросок
+	void throwling() {
+		//_а Бросаем первый кубик
+		throwFirstCube = random.nextInt(6)+1;
+				
+		//_а Бросаем второй кубик
+		throwSecondCube = random.nextInt(6)+1;
+				
+		//_а Показываем первый кубик
+		draw.getCube(throwFirstCube);
+				
+		//_а Показываем второй кубик
+		draw.getCube(throwSecondCube);
+		
+		System.out.print("Первый кубик = " + throwFirstCube + "  ");
+		System.out.println("Второй кубик = " + throwSecondCube);
+		sum = throwFirstCube + throwSecondCube;
+		//System.out.println();
+				
+	}
+	
+	//_а Бросок КОМПЬЮТЕРА
+	void pcThrow() {
+				
+		//_а Бросаем первый кубик
+		throwFirstCube = random.nextInt(6)+1;
+		
+		//_а Бросаем второй кубик
+		throwSecondCube = random.nextInt(6)+1;
+		
+		System.out.println("У компьютера выпало:");
+		
+		//_а Показываем первый кубик
+		draw.getCube(throwFirstCube);
+		
+		//_а Показываем второй кубик
+		draw.getCube(throwSecondCube);
+					
+		System.out.print("Первый кубик = " + throwFirstCube + "  ");
+		System.out.println("Второй кубик = " + throwSecondCube);
+		
+		//_а Показываем сумму двох кубиков
+		System.out.println("Сумма очков = " + (throwFirstCube+throwSecondCube));
+		
+		System.out.println();
+		
+	}
+	
+	//_а Бросок ПОЛЬЗОВАТЕЛЯ
+	void userThrow() {
+		System.out.println("Бросайте кубики ! (Нажмите Enter)");
+		readEnter.nextLine();
+		
+		//_а Бросаем первый кубик
+		throwFirstCube = random.nextInt(6)+1;
+		
+		//_а Бросаем второй кубик
+		throwSecondCube = random.nextInt(6)+1;
+		
+		System.out.println("У Вас выпало:");
+		
+		//_а Показываем первый кубик
+		draw.getCube(throwFirstCube);
+		
+		//_а Показываем второй кубик
+		draw.getCube(throwSecondCube);
+					
+		System.out.print("Первый кубик = " + throwFirstCube + "  ");
+		System.out.println("Второй кубик = " + throwSecondCube);
+		
+		//_а Показываем сумму двох кубиков
+		System.out.println("Сумма очков = " + sum);
+		
+		System.out.println();
+	}
+	
+	
+}

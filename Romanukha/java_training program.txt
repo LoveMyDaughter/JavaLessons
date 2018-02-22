@@ -1,0 +1,74 @@
+план курса Java 
+
+1 
+История, платформа, переменные, типизация, примитивные типы, массивы, циклы, условные конструкции, классы.
+Операторы. Методы. Перегрузка методов. Мульти-параметр. модификатор доступа. 
+ООП. Конструкторы, this, super. Наследование. Абстрактные классы, интерфейсы. 
+вложенные и внутренние классы. 
+2 
+Строки. StringBuilder, StringBuffer. регулярки. 
+Reflections. Аннотации. 
+Generics. 
+Исключения. enum. 
+3 
+JUnit, Logging. 
+Ant, maven. 
+Collections. 
+java 8 
+4 
+java.io, nio2 
+Введение в Swing 
+Swing MVC, DataModel. 
+срериализация 
+5 
+Многопоточность базовая. 
+Многопоточность управляемая. 
+xml 
+JDBC 
+6 
+Hibernate - основы
+Hibernate - DAO
+Servlet 
+JSP 
+7 
+JSP + Servlet 
+Spring IoC 
+Sprint MVC - основы
+Spring MVC - БД
+
+
+
+ЛИТЕРАТУРА:
+
+Брюс Эккель. Философия Java. 4-е изд. – СПб.: Питер, 2009. – 640 с.
+http://fs.to/texts/other/iM7zHmP90y2BthGwy6C9os-filosofiya-java.html
+
+Ильдар Хабибуллин. Самоучитель Java. – СПб.: БХВ-Петербург, 2001. – 464 с.
+http://fs.to/texts/other/i4ELwBJ5Y9qR2zH2UsK4TAI-samouchitel-java-3-izdanije.html
+
+Герберт Шилдт Полный справочник по Java
+http://fs.to/texts/other/i4FEmDQmYv2rWMP8kt1sHIs-polnyj-spravochnik-po-java.html
+Герберт Шилдт Java. Полное руководство. 8-е издание (Java SE 7)
+http://fs.to/texts/other/iLaQLL4qNeHP45VucXfwQM-java-polnoje-rukovodstvo-8-je-izdanije-java-se-7.html
+
+Joshua Bloch. Effective Java. Second Edition. – Upper Saddle River, NJ, Boston, Indianapolis, San Francisco, New York, Toronto, Montreal, London, Munich, Paris, Madrid, Capetown, Sydney, Tokyo, Singapore, Mexico City: Addison-Wesley, 2008.
+http://fs.to/texts/other/i4qCisoIHlGlXNtBEgtS2dO-java-effektivnoje-programmirovanije.html
+
+
+Чистый код. Создание, анализ и рефакторинг 
+http://fs.to/texts/other/iw8Ntch0pyrn6R6glVieTm-chistyj-kod-sozdanije-analiz-i-refaktoring.html
+
+Идеальный код  Под редакцией Энди Орама и Грега Уилсона
+http://fs.to/texts/other/iMaZjOHcnAgS9T7Yn2R17O-idealnyj-kod.html
+
+Кларенс Хо Spring 3 для профессионалов
+http://fs.to/texts/other/iMb0cInKkX4RXyZmtFxtzG-spring-3-dlya-professionalov.html
+
+Крейг Уоллс Spring в действии
+http://fs.to/texts/other/i4qC5aX8nkfux5TbeFsDplu-spring-v-dejstvii.html
+
+
+
+НЕ ЗНАЙДЕНО З РЕКОМЕНДОВАНОГО
+Анил Хемраджани. Гибкая разработка приложений на Java. – М.: Вильямс, 2008. – 352 с.
+Yakov Fain. Java Programming. 24-Hour Trainer. – Indianapolis: Wiley Publishing, 2011.
