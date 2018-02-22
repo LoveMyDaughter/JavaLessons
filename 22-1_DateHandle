@@ -1,0 +1,70 @@
+package lesson22;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.*;
+import java.util.Date;
+
+/* Создайте класс Date, который будет содержать информацию о дате (день, месяц, год). 
+ * С помощью механизма перегрузки операторов, определите операцию разности двух дат 
+ * (результат в виде количества дней между датами), а также операцию увеличения даты 
+ * на определенное количество дней. 
+*/
+
+// Чи правильно метод difference - статичний, і виклик - через назву класу DateHandle.difference() ?
+
+public class DateHandle {
+	
+	public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
+
+	public static void main(String[] args) {		
+
+		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in))) {
+			System.out.println("Введите первую дату: \nгод (YYYY): \nмесяц (MM): \nдень (DD): ");
+			String strYear = buffer.readLine();
+			String strMonth = buffer.readLine();
+			String strDay = buffer.readLine();
+			String strFirstDate = strYear + " "+ strMonth + " " + strDay;		
+			Date fisrtDate = dateFormat.parse(strFirstDate);
+
+			System.out.println("Введите вторую дату: \nгод (YYYY): \nмесяц (MM): \nдень (DD): ");
+			strYear = buffer.readLine();
+			strMonth = buffer.readLine();
+			strDay = buffer.readLine();
+			String strLastDate = strYear + " "+ strMonth + " " + strDay;
+			Date lastDate = dateFormat.parse(strLastDate);			
+			
+			System.out.println("Разница в днях: " + DateHandle.difference(fisrtDate, lastDate));
+			
+			// количество добавляемых дней указывается вручную (из-за лени)
+			System.out.println("Добаить дни (2): " + DateHandle.increase(lastDate, 2));
+			
+		} catch (ParseException parseE) {
+			System.out.println("Проверте формат вводимой даты!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	
+	}
+	
+	
+	// Разница двух дат в днях
+	public static int difference (Date firstDate, Date lastDate) {
+		long differ = lastDate.getTime() - firstDate.getTime();	// разница в милисекундах
+		int days = (int)(differ/(1000*60*60*24));	// перевод милисекунд в дни
+		return days;
+	}
+	
+	// Увеличение даты на несколько дней
+	public static String increase (Date date, int days) {
+		long dateInMiliseconds = date.getTime();	// перевод даты в милисекунды
+		long daysInMiliseconds = days*1000*60*60*24;	// дни в милисекундах
+		long resultDaysInMiliseconds = dateInMiliseconds + daysInMiliseconds;	// добавляем дни 
+		
+		Date resultDate = new Date(resultDaysInMiliseconds);	// исходная дата
+		String strResultDate = dateFormat.format(resultDate); 	// подаём дату как строку в формате "yyyy MM dd"
+		
+		return strResultDate; 		
+	}
+
+}

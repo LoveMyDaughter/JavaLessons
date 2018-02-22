@@ -1,0 +1,113 @@
+package lesson24;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+/*  Создайте класс Время, в котором реализованы операции 
+ * + сложения,
+ * + вычитания, 
+ * - сравнения, 
+ * - ввода и 
+ * + вывод на экран. 
+ * Возможность конвертации времени из американского 
+ * формата am (pm): 10:00 pm = 22:00, 12:00 pm =00:00 
+ * 
+ */
+
+// ДОРАБОТАТЬ:
+// ДОБАВИТЬ В МЕТОД ADD ПРОВЕРКУ ПЕРЕХОДА МИНУТ ЧЕРЕЗ 60
+// В МЕТОДЕ ADD ИЗМЕНИТЬ ФОРМАТ ВРЕМЕНИ НА 24-ЧАСОВОЙ
+
+public class Time {
+	
+//	SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+	Calendar calendar = Calendar.getInstance();
+	private int hours, min;
+	
+	// конструктор создаёт текущее время
+	public Time() {
+		this.hours = calendar.getTime().getHours();
+		this.min = calendar.getTime().getMinutes();
+	}
+	
+	// конструктор получает на вход часы и минуты
+	public Time(int hours, int min) {
+		this.hours = hours;
+		this.min = min;
+	}
+	
+	// метод выводит время
+	public Time getTime() {
+		return this;
+	}		
+	
+	// метод сложения времени
+	public String add(Time time) {
+		int firstHours = this.hours;		// изначальные часы 
+		int lastHours = time.hours;			// добавляемые часы
+		int firstMinutes = this.min;		// изначальные минуты
+		int lastMinutes = time.min;			// добавляемые минуты
+		this.calendar.add(Calendar.HOUR, lastHours);		// add  hours
+		int resultHours = this.calendar.get(Calendar.HOUR);
+		this.calendar.add(Calendar.MINUTE, lastMinutes);		// add  minutes
+		int resultMinutes = this.calendar.get(Calendar.MINUTE);
+		
+		return "сумма: " + resultHours + ":" + resultMinutes;
+	}
+	
+	// метод вычитания времени (тот же метод add с отрицательными значениями доабавляемых полей)
+	public String substract(Time time) {
+		int firstHours = this.hours;		// изначальные часы 
+		int lastHours = time.hours;			// добавляемые часы
+		int firstMinutes = this.min;		// изначальные минуты
+		int lastMinutes = time.min;			// добавляемые минуты
+		this.calendar.add(Calendar.HOUR, -lastHours);		// substract hours
+		int resultHours = this.calendar.get(Calendar.HOUR);
+		this.calendar.add(Calendar.MINUTE, -lastMinutes);		// substract  minutes
+		int resultMinutes = this.calendar.get(Calendar.MINUTE);
+		
+		return "разница: " + resultHours + ":" + resultMinutes;
+	}	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "время: " + this.hours + ":" + this.min;
+	}	
+	
+
+	public static void main(String[] args) throws Exception {
+		
+		// текущее время
+		Time currentTime = new Time();
+		System.out.println(currentTime.getTime());
+		
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+	
+		// ввод времени с консоли	
+		System.out.println("Введите время: \nчасы:");
+		String strHours = reader.readLine();
+		System.out.println("минуты:");
+		String strMinutes = reader.readLine();		
+		int hours = Integer.parseInt(strHours);
+		int minutes = Integer.parseInt(strMinutes);
+		
+		// время взятое из консоли
+		Time inputTime = new Time(hours, minutes);
+		System.out.println(inputTime.getTime());
+		
+		// new Time() вместо currentTime, чтобы метод add не изменил объект currentTime 
+		System.out.println(new Time().add(inputTime));
+				
+		System.out.println(new Time().substract(inputTime));
+		
+		} catch (Exception e) {
+			System.out.println("Неверный формат времени!");
+		}
+		
+	}
+}

@@ -1,0 +1,26 @@
+package lesson25;
+
+public class Start {
+
+	public static void main(String[] args) {
+		Game game = new Game();
+		BlackJack.createCardPack();		
+		
+		//System.out.println("Колода: \n" + BlackJack.createCardPack());
+		// System.out.println("Всех карт в колоде: " + BlackJack.cardPack.size());
+						
+		BlackJack.deal(game.playerPc, game.player1);
+		
+		System.out.println();
+		
+		game.player1.getCard();
+		//System.out.println("Сумма очков: " + game.player1.scores);
+		
+		game.playerPc.getCard();
+		
+	
+		
+
+	}
+
+}

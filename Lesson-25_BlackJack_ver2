@@ -1,0 +1,173 @@
+package lesson25;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+// Берем 1 колоду = 
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class BlackJack {
+	
+	// имя игрока
+	public String playerName;
+	
+	// тип играка: человек или компютер
+	public boolean isHuman = false;
+		
+	// создаем колоду карт
+	public static ArrayList<Integer> cardPack = new ArrayList<>();
+	
+	// очки на руках у игрока 
+	int scores = 0;
+	
+	// случайное значение
+	Random random = new Random();	
+	
+	// ввод с клавиатуры
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	
+	// конструктор
+	public BlackJack(boolean isHuman) {
+		this.isHuman = isHuman;
+		this.playerName = "Компьютер";
+	}	
+	
+	// конструктор
+	public BlackJack(boolean isHuman, String name ) {
+		this.isHuman = isHuman;
+		this.playerName = name;
+	}
+	
+
+	// наполняем колоду
+	public static ArrayList<Integer> createCardPack() {		
+		
+		// наполняем колоду картами от 2 до Туза
+		for (int i = 0; i < 4; i++) {	// четыре масти
+			for (int j = 2; j < 12; j++) {	// очки карты
+				cardPack.add(j);	// 
+				if (j == 10) {
+					cardPack.add(j);	// +J Валет
+					cardPack.add(j);	// +Q Дама
+					cardPack.add(j);	// +K Король
+				}
+			}
+		}
+		
+		return cardPack;
+	}
+	
+	
+	// метод ход
+	// игроку предлагается взять карту
+	// компютер учитывает очки, вероятность взять карту исходит от очков
+	public void turn() throws IOException {	// исключение возможно из-за reader.readLine();
+		
+		int chance10 = random.nextInt(9);	// вероятность 10%
+		int chance50 = random.nextInt(2);	// вероятность 50%
+		int chance100 = random.nextInt(1);	// вероятность 100%
+		
+		// для живого игрока
+		if (this.isHuman == true) {
+			System.out.println("Ход игрока " + this.playerName + " ...");
+			System.out.println("Взять карту?");
+			String askGetCard = reader.readLine();
+			
+			if ("yes".equals(askGetCard) ) {
+				this.getCard();
+			} else if ("no".equals(askGetCard) ) {
+				System.out.println("Ваша сумма очков = " + this.scores);
+			}
+			
+		} 
+		
+		// для компютера
+		else {
+			System.out.println("Ход компютера...");
+// tempscores
+// this.scores = 18;			
+			if (this.scores < 10) {
+				this.getCard();
+			} else
+			if (this.scores >=10 && this.scores < 15) {
+				if (0 == chance50)
+					this.getCard();
+			} else
+			if (this.scores >=15 && this.scores < 19) {
+				if (0 == chance10)
+					this.getCard();
+			} else
+			if (this.scores >=19) {
+					
+			}
+			
+		}
+		System.out.println("Очок = " + this.scores);
+	}	
+	
+	
+	
+	// метод взять карту
+	public void getCard() {
+		System.out.println(this.playerName + " : Взята карта: ");
+		
+		int card = selectCard();		
+		scoreCount(card);	// добавили карту к сумме очков
+		cardPack.remove(card);	// удалили карту из колоды		
+		
+		// показать взятую карту и очки только для живого игрока
+		if (this.isHuman == true) {
+			System.out.println(card);
+			System.out.println("Сумма очков: " + this.scores);
+		}	
+		
+		// показать взятую карту и очки для компютера (нужно для тестировки)
+		if (this.isHuman == false) {
+			System.out.println(card);
+			System.out.println("Сумма очков: " + this.scores);
+		}
+		
+//		// набор карт игрока
+//		ArrayList<Integer> playerCards = new ArrayList<>();
+//		playerCards.add(card);
+		
+	}
+	
+	// выбор карты из колоды
+	public int selectCard() {
+		int randomPosition = random.nextInt(cardPack.size());
+		int card = cardPack.get(randomPosition);	// рендомная карта в колоде	
+		
+		return card;
+	}
+	
+	
+	// раздача
+	public static void deal(BlackJack player1, BlackJack player2) {
+		System.out.println("Карты розданы!");
+		player1.getCard();
+		player2.getCard();
+		player1.getCard();
+		player2.getCard();
+	}
+	
+	// метод подсчёт очков
+	public int scoreCount(int card) {
+		scores += card;
+		//System.out.println("Набрано очков: " + scores);
+		return scores;
+	}
+	
+	// метод вскрывает карты игроков
+	public static void showCards(BlackJack player1, BlackJack player2) {
+		System.out.println(player1.playerName + " = " + player1.scores);
+		System.out.println(player2.playerName + " = " + player2.scores);
+	}
+	
+
+	
+	
+}

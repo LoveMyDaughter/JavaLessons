@@ -1,0 +1,103 @@
+//_а Игра «кубики». 
+/* Условие: имеется два игральных кубика со значениями от 1 до 6. Игра происходит с компьютером,
+ * кубики бросаются поочередно. Побеждает тот, у кого сумма выпавших очков по итогам пяти бросков
+ * больше. Предусмотрите возможность получения первого хода человеком или компьютером.
+ * Кубики отображаются с помощью символов. В конце игры необходимо выводить среднюю сумму
+ * по броскам для обоих участников.
+ */
+
+//_а Класс Cubes содержит метод main
+
+
+package lesson8;
+import java.util.Scanner;
+
+
+public class Cubes {
+	
+	private static Scanner readThrow, readEnter;
+	static int firstThrow;	//_а Чей будет первый ход
+	
+	static int userCount=1;	//_а Счетчик ходов пользователя
+	static int pcCount=1;	//_а Счетчик ходов компьютера
+	
+	static int userSum=0;
+	static int pcSum=0;
+	
+	static boolean rightSelect = false;
+	
+		
+	public static void main(String[] args) {
+		
+		Throws selectThrow= new Throws();
+				
+		readThrow = new Scanner(System.in);
+		
+		//_а Выбираем, кто первый ходит
+		while (!rightSelect) {	//_а Можно выбрать только 1.Ваш ход или 2.Ход компьютера
+			
+			System.out.println("Выберите, чей первый ход: \n 1. Ваш \n 2. Компьютера");
+			firstThrow = readThrow.nextInt();
+			
+			switch (firstThrow) {
+			
+				case 1: selectThrow.gamerName = "user";	//_а Текущий игрок - пользователь
+				rightSelect = true;
+				break;
+				
+				case 2:	selectThrow.gamerName = "pc";		//_а Текущий игрок - компьютер
+				rightSelect = true;
+				break;
+				
+				default:
+					System.out.println("Нужно выбрать 1 или 2");
+					rightSelect = false;
+			}
+		}
+
+		readEnter = new Scanner(System.in);
+		
+		//_а Повтор 5 ходов для каждого игрока
+		while (userCount<6 || pcCount<6) {
+			
+			if (selectThrow.gamerName=="user") {
+			
+				System.out.println("Бросайте кубики ! (Нажмите Enter)");
+				readEnter.nextLine();
+				
+				System.out.println("У Вас выпало:");
+				
+				selectThrow.throwling();	//_а Показываем ход
+				
+				userSum += selectThrow.sum;
+				System.out.println("Сумма очков = " + userSum);
+				
+				userCount++;
+				selectThrow.gamerName="pc";	//_а смена игрока
+			}
+			
+			else if (selectThrow.gamerName=="pc") {
+				
+				System.out.println("У компьютера выпало:");
+				
+				selectThrow.throwling();	//_а Показываем ход
+				
+				pcSum += selectThrow.sum;
+				System.out.println("Сумма очков = " + pcSum);
+				
+				pcCount++;
+				selectThrow.gamerName="user";	//_а смена игрока
+			}
+		}
+		
+		System.out.println("Средняя сумма очков компьютера = " + pcSum/5);
+		System.out.println("Средняя сумма Вашых очков = " + userSum/5);
+		
+		if (userSum == pcSum) System.out.println("НИЧЬЯ !");
+		else if (userSum > pcSum) System.out.println("Вы победили !");
+		else System.out.println("Победил компьютер !");
+		
+		
+	}
+
+}

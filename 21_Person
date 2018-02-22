@@ -1,0 +1,54 @@
+package lesson21;
+
+/*	Разработать класс Person, который содержит соответствующие члены для хранения: 
+имени, 
+возраста, 
+пола и 
+телефонного номера. 
+Напишите функции-члены, которые смогут изменять эти члены данных индивидуально. 
+Напишите функцию-член Person::Print(), которая выводит отформатированные данные о человеке. 
+ * 
+ */
+
+public class Person {
+	
+	private String name;
+	private int age;
+	private String gender;
+	private String tel;
+
+	public static void main(String[] args) {	
+		Person person = new Person();
+		person.setName("Antonio");
+		person.setAge(29);
+		person.setGender("Мужской");
+		person.setTel("097 90 99 864");
+		
+		System.out.println(person.toString());
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	@Override
+	public String toString() {
+		return "Имя: " + name + "\nВозраст: " + age + "\nПол: " + gender + 
+				"\nТелефон: " + tel ;
+	}
+	
+
+	
+}

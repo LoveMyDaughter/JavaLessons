@@ -1,0 +1,132 @@
+package lesson24;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/*  Создать класс для работы с матрицами. Предусмотреть, как минимум, функции для 
+ * + сложения матриц, 
+ * - умножения матриц, 
+ * - транспонирования матриц, 
+ * - присваивания матриц друг другу, 
+ * + установка и получение произвольного элемента матрицы. 
+ * Необходимо перегрузить соответствующие операторы.
+ */
+
+// В метод showMatrix добавить выравнивание столбцов (проверка: 1 или 2 символа...)
+// Плохо: лишнее поле transMatrix в каждом объекте, оно нужно только в методе transMatrix ()
+
+public class Matrix {
+	
+	// матрица
+	int x = 6, y = 4;	// размерность	
+	int[][] matrix = new int[y][x]; 
+	int[][] transMatrix = new int[x][y];	// будущая транспонированная матрица
+	boolean isTransposed = false;
+	
+	Random random = new Random();
+	
+	// конструктор - наполняем матрицу случайными значениями
+	public Matrix(boolean isTransposed) {
+		this.isTransposed = isTransposed;
+		
+		// наполняем матрицу
+		for (int i = 0; i < y; i++) {
+			for (int j = 0; j < x; j++) {
+				matrix[i][j] = random.nextInt(10);
+			}
+		}
+		
+		if (isTransposed) {  // если нужно стоздать транспонированную матрицу
+			// наполняем матрицу, в которой кол-во строк и столбцов меняются местами
+			for (int i = 0; i < x; i++) {
+				for (int j = 0; j < y; j++) {
+					transMatrix[i][j] = random.nextInt(10);
+				}
+			}
+		}
+	}
+
+	
+	// метод установки произвольного элемента матрицы
+	public void setElement(int x, int y, int value) {
+		try {
+			matrix[x][y] = value;
+		} catch (ArrayIndexOutOfBoundsException e) { 
+			System.out.println("Ошибка! Невозможно установить текущий элемент.\nРазмер матрицы: " + this.x + " на " + this.y);
+		}	
+	}
+	
+	// метод получения произвольного элемента матрицы
+	public int getElement(int x, int y) {		
+		int element = -1; 
+		try {
+			element = matrix[x][y]; 
+		} catch (ArrayIndexOutOfBoundsException e) { 
+			System.out.println("Ошибка! Невозможно получить текущий элемент.\nРазмер матрицы: " + this.x + " на " + this.y);
+		}
+		return element;
+	}
+	
+	// метод сложения матриц
+	public Matrix addMatrix(Matrix matrix) {
+		for (int i = 0; i < y; i++) {
+			for (int j = 0; j < x; j++) {
+				this.matrix[i][j] += matrix.matrix[i][j];
+			}
+		}
+		return this;
+	}
+	
+	// метод транспонирования матриц
+	public void transposition () {
+		for (int i = 0; i < this.transMatrix.length; i++) {
+			System.out.println(transMatrix[i]);
+		}
+	}
+	
+	// показ матрицы на экран
+	public void showMatrix() {
+		
+		// если выводим транспонированную матрицу, то подменяем обычную - на транспонированную
+		if (isTransposed) {
+			matrix = transMatrix;
+		}
+		
+		// сам вывод матрицы на экран
+		for (int[] line : this.matrix) {
+			for (int number : line) {
+				System.out.print(number + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();		
+	}
+	
+	public static void main(String[] args) {
+		
+		Matrix matrix1 = new Matrix(false);
+		matrix1.showMatrix();			
+
+//		Matrix matrix2 = new Matrix();
+//		matrix2.showMatrix();
+		
+//		System.out.println(matrix1.getElement(1, 0));
+//		System.out.println(matrix2.getElement(2, 2));
+//		
+//		matrix1.setElement(4, 2, 99);
+//		matrix1.showMatrix();
+//		
+//		matrix1.addMatrix(matrix2);
+//		matrix1.showMatrix();
+		
+		
+		
+		Matrix matrix3 = new Matrix(true);
+		matrix3.showMatrix();
+				
+		matrix3.transposition();
+//		matrix3.showMatrix();
+		
+	}
+
+}

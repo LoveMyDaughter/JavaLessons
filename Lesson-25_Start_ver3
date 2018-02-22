@@ -1,0 +1,38 @@
+package lesson25;
+
+import java.io.IOException;
+
+public class Start {
+
+	public static void main(String[] args) throws IOException {
+		
+		// инициализируем колоду
+		BlackJack.createCardPack();
+		
+		BlackJack playerPc = new BlackJack(false);		// создаем игрока - компютера
+		BlackJack player1 = new BlackJack(true, "Антон");		// создаем игрока - пользователя
+		
+		//System.out.println("Колода: \n" + BlackJack.createCardPack());
+		// System.out.println("Всех карт в колоде: " + BlackJack.cardPack.size());
+						
+		// роздача
+		BlackJack.deal(playerPc, player1);
+		
+		System.out.println();
+		
+		// ход компютера
+		playerPc.turn();
+		
+		System.out.println();
+				
+		// ход игрока
+		player1.turn();		
+		
+		System.out.println();
+		
+		// вскрытие карт
+		BlackJack.showCards(player1, playerPc);
+		
+
+	}
+}

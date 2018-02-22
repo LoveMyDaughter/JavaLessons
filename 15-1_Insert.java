@@ -1,10 +1,18 @@
 package lesson15;
 
+<<<<<<< HEAD
 /* Õ‡ÔËÒ‡Ú¸ ÔÓ„‡ÏÏÛ, ÍÓÚÓ‡ˇ ÓÒÛ˘ÂÒÚ‚ÎˇÂÚ ‰Ó·‡‚ÎÂÌËÂ ÒÚÓÍË ËÎË ÒÚÓÎ·ˆ‡
  * ‚ Î˛·ÓÂ ÏÂÒÚÓ ‰‚ÛÏÂÌÓÈ Ï‡ÚËˆ˚ ÔÓ ‚˚·ÓÛ ÔÓÎ¸ÁÓ‚‡ÚÂÎˇ.
  */
 
 // ÒÔÓÒÓ· Ì‡ÔÓÎÌÂÌËÂ Ï‡ÚËˆ˚ - –ÓÏ‡ÌÛı‡ ¿.
+=======
+/* –ù–∞–ø–∏—Å–∞—Ç—å –ø—Ä–æ–≥—Ä–∞–º–º—É, –∫–æ—Ç–æ—Ä–∞—è –æ—Å—É—â–µ—Å—Ç–≤–ª—è–µ—Ç –¥–æ–±–∞–≤–ª–µ–Ω–∏–µ —Å—Ç—Ä–æ–∫–∏ –∏–ª–∏ —Å—Ç–æ–ª–±—Ü–∞
+ * –≤ –ª—é–±–æ–µ –º–µ—Å—Ç–æ –¥–≤—É–º–µ—Ä–Ω–æ–π –º–∞—Ç—Ä–∏—Ü—ã –ø–æ –≤—ã–±–æ—Ä—É –ø–æ–ª—å–∑–æ–≤–∞—Ç–µ–ª—è.
+ */
+
+// —Å–ø–æ—Å–æ–± –Ω–∞–ø–æ–ª–Ω–µ–Ω–∏–µ –º–∞—Ç—Ä–∏—Ü—ã - –†–æ–º–∞–Ω—É—Ö–∞ –ê.
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,6 +27,7 @@ public class Insert {
 	
 	public static void main(String[] args) {
 		
+<<<<<<< HEAD
 		// ‡ÁÏÂÌÓ‚ÒÚ¸ Ï‡ÚËˆ˚
 		matrixLength = 8;
 		
@@ -39,6 +48,28 @@ public class Insert {
 		
 		
 		// Ì‡ÔÓÎÌˇÂÏ ÒÔËÒÓÍ insideList ÒËÏ‚ÓÎ‡ÏË ËÁ ÒÚÓÍË phraze 
+=======
+		// —Ä–∞–∑–º–µ—Ä–Ω–æ–≤—Å—Ç—å –º–∞—Ç—Ä–∏—Ü—ã
+		matrixLength = 8;
+		
+		// –ø—Ä–æ–≤–µ—Ä–∫–∞ –ø—Ä–∞–≤–∏–ª—å–Ω–æ—Å—Ç–∏ –≤—ã–±–æ—Ä–∞ –Ω–∞–ø—Ä–∞–≤–ª–µ–Ω–∏—è (—Å—Ç—Ä–æ–∫–∞ –∏–ª–∏ —Å—Ç–æ–ª–±–µ—Ü)
+		correctDirection = false;
+		
+		// —Å–ø–∏—Å–æ–∫ insideList —è–≤–ª—è–µ—Ç —Å–æ–±–æ–π "—Å—Ç—Ä–æ–∫—É" –≤ –º–∞—Ç—Ä–∏—Ü–µ
+		ArrayList<Character> insideList = new ArrayList();
+				
+		// —Å–ø–∏—Å–æ–∫ list —è–≤–ª—è–µ—Ç —Å–æ–±–æ–π "—Å—Ç–æ–ª–±—Ü—ã" –≤ –º–∞—Ç—Ä–∏—Ü–µ - –≤—Å—é –º–∞—Ç—Ä–∏—Ü—É
+		ArrayList<ArrayList<Character>> list = new ArrayList();
+			
+		// —Å–æ–∑–¥–∞–µ–º —Å—Ç—Ä–æ–∫—É-–∞–ª—Ñ–∞–≤–∏—Ç (–Ω–∞–±–æ—Ä —Å–∏–º–≤–æ–ª–æ–≤)
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		
+		// —Å—Ç—Ä–æ–∫–∞ (–∏–ª–∏ —Å—Ç–æ–ª–±–µ—Ü) –∫–æ—Ç–æ—Ä—É—é –¥–æ–±–∞–≤–ª—è–µ–º –∫ –º–∞—Ç—Ä–∏—Ü–µ
+		String phraze = "–†–û–ë–û–¢–ê";
+		
+		
+		// –Ω–∞–ø–æ–ª–Ω—è–µ–º —Å–ø–∏—Å–æ–∫ insideList —Å–∏–º–≤–æ–ª–∞–º–∏ –∏–∑ —Å—Ç—Ä–æ–∫–∏ phraze 
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 		for (char c : phraze.toCharArray()) {
 			insideList.add(c);
 		}	
@@ -46,7 +77,11 @@ public class Insert {
 		
 		r = new Random();
 		
+<<<<<<< HEAD
 		// Ì‡ÔÓÎÌˇÂÏ Ï‡ÚËˆÛ Ë ‚˚‚Ó‰ËÏ
+=======
+		// –Ω–∞–ø–æ–ª–Ω—è–µ–º –º–∞—Ç—Ä–∏—Ü—É –∏ –≤—ã–≤–æ–¥–∏–º
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 		for (int i=0; i<matrixLength; i++) {
 			list.add(new ArrayList<Character>());
 			for (int j=0; j<matrixLength; j++) {
@@ -57,6 +92,7 @@ public class Insert {
 		}
 				
 		
+<<<<<<< HEAD
 		System.out.println("ƒÓ·‡‚ËÚ¸ ÒÚÓÍÛ: " + phraze);
 		
 		// Ò˜ËÚ˚‚‡ÂÏ Ì‡Ô‡‚ÎÂÌËÂ ‰Ó·‡‚ÎˇÂÏÓÈ ÒÚÓÍË
@@ -64,12 +100,22 @@ public class Insert {
 			System.out.println(" ‡Í ‰Ó·‡‚ËÚ¸? "
 					+ "\n 1. —ÚÓÍ‡ („ÓËÁÓÌÚ‡Î¸ÌÓ)."
 					+ "\n 2. —ÚÓÎ·Âˆ (‚ÂÚËÍ‡Î¸ÌÓ).");
+=======
+		System.out.println("–î–æ–±–∞–≤–∏—Ç—å —Å—Ç—Ä–æ–∫—É: " + phraze);
+		
+		// —Å—á–∏—Ç—ã–≤–∞–µ–º –Ω–∞–ø—Ä–∞–≤–ª–µ–Ω–∏–µ –¥–æ–±–∞–≤–ª—è–µ–º–æ–π —Å—Ç—Ä–æ–∫–∏
+		while (! correctDirection) {
+			System.out.println("–ö–∞–∫ –¥–æ–±–∞–≤–∏—Ç—å? "
+					+ "\n 1. –°—Ç—Ä–æ–∫–∞ (–≥–æ—Ä–∏–∑–æ–Ω—Ç–∞–ª—å–Ω–æ)."
+					+ "\n 2. –°—Ç–æ–ª–±–µ—Ü (–≤–µ—Ä—Ç–∏–∫–∞–ª—å–Ω–æ).");
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 			scanner = new Scanner(System.in);
 			try {
 				direction = scanner.nextInt();
 				if (direction == 1 || direction == 2) {
 					correctDirection = true;
 				} else {
+<<<<<<< HEAD
 					System.out.println("¬‚Â‰ËÚÂ 1 ËÎË 2"); 	
 				}
 			} catch (InputMismatchException e) {
@@ -78,24 +124,49 @@ public class Insert {
 		}
 		
 		System.out.print("¬‚Â‰ËÚÂ ÔÓÁËˆË˛: ");
+=======
+					System.out.println("–í–≤–µ–¥–∏—Ç–µ 1 –∏–ª–∏ 2"); 	
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("–í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ!");
+			}
+		}
+		
+		System.out.print("–í–≤–µ–¥–∏—Ç–µ –ø–æ–∑–∏—Ü–∏—é: ");
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 		scanner = new Scanner(System.in);
 		position = scanner.nextInt();
 		
 		
+<<<<<<< HEAD
 		// Ó·‡·ÓÚÍ‡ ‚˚·‡ÌÌÓ„Ó Ì‡Ô‡‚ÎÂÌËˇ ÒÚÓÍË
 		switch (direction) {
 		
 		// ‰Ó·‡‚ÎˇÂÏ ÒÚÓÍÛ
+=======
+		// –æ–±—Ä–∞–±–æ—Ç–∫–∞ –≤—ã–±—Ä–∞–Ω–Ω–æ–≥–æ –Ω–∞–ø—Ä–∞–≤–ª–µ–Ω–∏—è —Å—Ç—Ä–æ–∫–∏
+		switch (direction) {
+		
+		// –¥–æ–±–∞–≤–ª—è–µ–º —Å—Ç—Ä–æ–∫—É
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 		case 1: {
 			list.add(position, insideList);
 			break;
 				}
 		
+<<<<<<< HEAD
 		// ‰Ó·‡‚ÎˇÂÏ ÒÚÓÎ·Âˆ
 		case 2: {
 			for (int i=0; i<list.size(); i++) {
 				if (i < insideList.size()) {
 					list.get(i).add(position, insideList.get(i)); 	// ÒÚÓÎ·Âˆ
+=======
+		// –¥–æ–±–∞–≤–ª—è–µ–º —Å—Ç–æ–ª–±–µ—Ü
+		case 2: {
+			for (int i=0; i<list.size(); i++) {
+				if (i < insideList.size()) {
+					list.get(i).add(position, insideList.get(i)); 	// —Å—Ç–æ–ª–±–µ—Ü
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 				} else {
 					list.get(i).add(position, ' ');
 				}
@@ -110,7 +181,11 @@ public class Insert {
 			
 		}
 		
+<<<<<<< HEAD
 		// ‚˚‚Ó‰ ËÚÓ„Ó‚ÓÈ Ï‡ÚËˆ˚ Ò ‰Ó·‡‚ÎÂÌÓÈ ÒÚÓÍÓÈ
+=======
+		// –≤—ã–≤–æ–¥ –∏—Ç–æ–≥–æ–≤–æ–π –º–∞—Ç—Ä–∏—Ü—ã —Å –¥–æ–±–∞–≤–ª–µ–Ω–æ–π —Å—Ç—Ä–æ–∫–æ–π
+>>>>>>> c0ad407ecd83aa6bee2290b638c63333c0e9ee07
 		for (int i=0; i<list.size(); i++) {
 			System.out.print(list.get(i));
 			System.out.println();

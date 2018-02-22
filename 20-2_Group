@@ -1,0 +1,26 @@
+package lesson20;
+
+import java.util.LinkedList;
+
+public class Group {	
+	
+	public static void main(String[] args) {
+		
+		LinkedList <Student> groupList = new LinkedList<>();
+		
+		groupList.add(new Student("Ant", "Tsvigun"));
+		groupList.add(new Student("Igor", "Polanskiy"));
+		groupList.add(new Student("Yuriy", "Zhiviy"));
+		groupList.add(new Student("Yuriy", "Fedorchuk"));
+		groupList.add(new Student("Ludmila", "Savchuk"));
+		groupList.add(new Student("Mariana", "Lira"));
+		
+		for (Student student : groupList) {
+			System.out.println(student.firstName + " " + student.lastName);
+		}	
+
+	}
+	
+	
+
+}

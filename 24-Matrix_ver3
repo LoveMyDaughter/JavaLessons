@@ -1,0 +1,205 @@
+package lesson24;
+
+import java.util.Random;
+
+/*  Создать класс для работы с матрицами. Предусмотреть, как минимум, функции для 
+ * + сложения матриц, 
+ * + умножения матриц, 
+ * + транспонирования матриц, 
+ * + присваивания матриц друг другу, 
+ * + установка и получение произвольного элемента матрицы. 
+ * Необходимо перегрузить соответствующие операторы.
+ */
+
+public class Matrix {
+		
+	int[][] matrix;	// матрица - двумерный массив
+	int lines = 4;	// размерность матрицы
+	int rows = 6;			
+	
+	// конструктор
+	public Matrix() {
+		this.matrix = new Matrix(rows, lines).matrix;
+	}
+	
+	
+	// конструктор с параметрами: ширина и высота матрицы
+	public Matrix(int width, int height) {
+		this.rows = width;
+		this.lines = height;
+		matrix = new int[lines][rows];
+		Random random = new Random();
+		
+		// создание матрицы
+		for (int i = 0; i < lines; i++) {
+			for (int j = 0; j < rows; j++) {
+				matrix[i][j] = random.nextInt(10);
+			}
+		}
+		
+	}
+	
+	
+	// метод получения произвольного элемента матрицы
+	// элементы считаются с "0"
+	public int getElement(int x, int y) {		
+		try {
+			System.out.println("Элемент [" + x + "][" + y + "] :" );
+			return this.matrix[y][x];
+		} catch (ArrayIndexOutOfBoundsException e) { 
+			System.out.println("Ошибка! Невозможно получить текущий элемент.\n"
+					+ "Размер матрицы: " + this.lines + " на " + this.rows);
+			return -1;
+		}		
+	}
+	
+	
+	// метод установки произвольного элемента матрицы
+	public void setElement(int x, int y, int value) {
+		try {
+			matrix[x][y] = value;
+		} catch (ArrayIndexOutOfBoundsException e) { 
+			System.out.println("Ошибка! Невозможно установить текущий элемент.\n"
+					+ "Размер матрицы: " + this.rows + " на " + this.lines);
+		}
+	}
+	
+	
+	// метод сложения матриц
+	public Matrix addMatrix(Matrix matrix) {
+		System.out.println("Сложение матриц:");
+		this.showMatrix();
+		System.out.println("+");
+		matrix.showMatrix();
+		
+		if ((this.rows == matrix.rows) && (this.lines == matrix.lines)) {
+			for (int i = 0; i < lines; i++) {
+				for (int j = 0; j < rows; j++) {
+					this.matrix[i][j] += matrix.matrix[i][j];
+				}
+			}	
+			System.out.println();
+			return this;
+		} else {
+			System.out.println("\nОшибка! Невозможно сложить матрицы.\n"
+					+ "Разная размерность!");
+			return null;
+		}
+	}
+	
+	
+	// метод присваивания матриц
+	public Matrix equals(Matrix matrix) {
+		System.out.println("Присваивание матриц:");
+		this.showMatrix();
+		System.out.println("присвоить");
+		matrix.showMatrix();
+		
+		if ((this.rows == matrix.rows) && (this.lines == matrix.lines)) {
+			this.matrix = matrix.matrix;
+			System.out.println();
+			return this;
+		} else {
+			System.out.println("Ошибка! Невозможно присвоить матрицу.\n"
+					+ "Разная размерность! ");
+			return null;
+		}		
+	}
+		
+	// метод транспонирования матриц
+	public Matrix transposeMatrix () {		
+		Matrix matrix = new Matrix(this.lines, this.rows);
+		System.out.println("Транспонирование матрицы:");
+		this.showMatrix();
+		System.out.println("<>");		
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < lines; j++) {
+				matrix.matrix[i][j] = this.matrix[j][i];
+			}
+		}	
+		return matrix;
+	}
+	
+	// метод умножения матриц
+	public Matrix multiplyMatrix(Matrix matrix) {
+		System.out.println("Умножение матриц:");
+		this.showMatrix();
+		System.out.println("*");
+		matrix.showMatrix();
+		System.out.println();
+
+		if (matrix.lines == this.rows) {
+			Matrix tempMatrix = new Matrix(this.lines, matrix.rows);
+			
+			for (int i = 0; i < this.lines; i++) {
+				for (int j = 0; j < matrix.rows; j++) {
+					tempMatrix.matrix[i][j] = 0;
+					for (int k = 0; k < this.rows; k++){
+						tempMatrix.matrix[i][j] += this.matrix[i][k] * matrix.matrix[k][j]; 
+					}						
+				}
+			}
+			
+			return tempMatrix;
+		}else {
+			System.out.println("Ошибка! Невозможно перемножить матрицы.\n"
+					+ "Разное кол-во строк и столбцов 1-ой и 2-ой матриц! ");
+			return null;
+		}		
+	}
+	
+	// показ матрицы на экран
+	public void showMatrix() {
+		for (int[] line : this.matrix) {
+			for (int number : line) {
+				System.out.print(number + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		Matrix matrix0 = new Matrix();
+		matrix0.showMatrix();	
+		System.out.println(matrix0.getElement(0, 3));
+			
+		System.out.println("====================");
+		
+		Matrix matrix1 = new Matrix(3, 2);
+		matrix1.setElement(0, 0, 1);
+		matrix1.setElement(0, 1, 1);
+		matrix1.setElement(0, 2, 1);
+		matrix1.setElement(1, 0, 2);
+		matrix1.setElement(1, 1, 2);
+		matrix1.setElement(1, 2, 2);
+		matrix1.showMatrix();
+		
+		System.out.println("====================");
+		
+		Matrix matrix2 = new Matrix(6, 4);
+		matrix2.showMatrix();
+		
+		System.out.println("====================");
+		
+		matrix0.addMatrix(matrix2);
+		matrix0.showMatrix();
+				
+		System.out.println("====================");
+		
+		matrix0.equals(matrix2);
+		matrix0.showMatrix();
+		
+		System.out.println("====================");
+		
+		Matrix matrix3 = matrix1.transposeMatrix();
+		matrix3.showMatrix();
+		
+		System.out.println("====================");
+		
+		Matrix matrix4 = matrix1.multiplyMatrix(matrix3);
+		matrix4.showMatrix();
+		
+	}
+
+}

@@ -1,0 +1,103 @@
+package lesson21;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+/*	Разработать класс String, который в дальнейшем будет использоваться для работы со строками.
+ *  Класс должен содержать: 
+конструктор по умолчанию, позволяющий создать строку длиной 80 символов; 
+конструктор, позволяющий создавать строку произвольного размера; 
+
+конструктор, который создаёт строку и инициализирует её строкой, полученной от пользователя. 
+Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран. 
+ * 
+ */
+
+/*  Добавить в строковый класс функцию, которая создает строку, содержащую пересечение двух строк, 
+ * то есть общие символы для двух строк. Например, результатом пересечения строк "sdqcg" "rgfas34" 
+ * будет строка "sg". Для реализации функции перегрузить оператор * (бинарное умножение). 
+ * 
+ */
+
+public class StringClass {
+	
+	private static String string;
+
+	public static void main(String[] args) {			
+		
+		StringClass sClass1 = new StringClass();
+		new StringClass(41);
+		
+		sClass1.write();		
+		new StringClass(string);
+		
+		sClass1.show(string);
+		System.out.println("Пересечение: " + sClass1.cross("554332111", "122333444455555"));
+	}
+	
+	// конструктор со строкой 80 символов 
+	public StringClass() {
+		String str = "                                                                                ";
+		System.out.println("Конструктор-1. Длина строки = " + str.length());
+	}	
+	
+	// конструктор с произвольной строкой
+	public StringClass(int length) {
+		String str = "";
+		for (int i=0; i<length; i++){
+			str = str + " ";
+		}
+		System.out.println("Конструктор-2. Длина строки = " + str.length());
+	}
+	
+	// конструктор со строкой, введённой с клавиатуры
+	public StringClass(String s){
+		String str = s;
+		System.out.println("Конструктор-3. Строка: \n" + str);
+	}
+	
+	// ввод строки с клавиатуры
+	public void write() {
+		System.out.println("Ну давай уже, вводи свою строку: ");
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+			string = reader.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// вывод строки
+	public void show(String str) {
+		System.out.println("Введённая строка: " + str);
+	}
+	
+	// пересечение двух строк
+	public String cross(String firstString, String secondString) {
+		String resultString = "";
+	
+		// перевод первой строки в коллекцию символов
+		ArrayList <Character> firstArray = new ArrayList<>();		
+		for (int i=0; i<firstString.length(); i++) {
+			firstArray.add(firstString.charAt(i));
+		}
+		
+		// перевод второй строки в коллекцию символов
+		ArrayList <Character> secondArray = new ArrayList<>();
+		for (int i=0; i<secondString.length(); i++) {
+			secondArray.add(secondString.charAt(i));
+		}
+		
+		// обработка пересечения
+		for (int i=0; i<secondArray.size(); i++) {		
+			if (firstArray.contains(secondArray.get(i))) {
+				resultString += secondArray.get(i);
+				firstArray.set(firstArray.indexOf(secondArray.get(i)), null);  //удаляем повторяющийся символ из строки1
+				secondArray.set(i, null);  //удаляем повторяющийся символ из строки2				
+			}
+		}
+		
+		return resultString;
+	}
+
+}
