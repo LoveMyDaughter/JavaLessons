@@ -1,0 +1,92 @@
+//_а    Дан массив случайных чисел в диапазоне от -20 до +20. Необходимо найти позиции крайних
+//    отрицательных элементов (самого левого отрицательного элемента и самого правого 
+//    отрицательного элемента) и отсортировать элементы, находящиеся между ними. 
+
+
+package lesson10;
+import java.util.Random;
+
+public class SortBetweenNegatives {
+	
+	static int leftKey;
+	static int rightKey;
+	static int leftKeyIndex;
+	static int rightKeyIndex;
+	
+	static boolean leftKeyExists = false;
+	static boolean rightKeyExists = false;
+	
+
+	public static void main(String[] args) {
+
+		Random random = new Random();
+		
+		int length = 10;
+		Integer[] randomArray = new Integer[length];
+//		Integer[] randomArray = {1, 1, 100, 2, -17, -8, 32, 15, 3, 66};
+		
+		
+		//_а Массив случайных чисел (-20, 20)
+		for (int i=0; i<randomArray.length; i++) {
+			randomArray[i] = random.nextInt(40)-20;
+			System.out.print(randomArray[i] + " ");
+		}
+		
+		System.out.println();
+		
+		//_а Поиск крайнего левого отрицательного элемента
+		for (int i=0; i<randomArray.length; i++) {
+			
+			if (randomArray[i]<0) {
+				leftKey = randomArray[i];
+				leftKeyIndex = i;
+				leftKeyExists = true;
+				break;
+			}
+		}
+		
+		//_а Поиск крайнего правого отрицательного элемента
+		//_а Если нет крайнего левого - нет смысла искать крайний правый
+		if (leftKeyExists) {
+			for (int i=randomArray.length-1; i>0; i--) {
+				
+				if (randomArray[i]<0) {
+					rightKey = randomArray[i];
+					rightKeyIndex = i;
+					rightKeyExists = true;
+					break;
+				}
+			}
+		} else {
+			System.out.print("Отрицательных элементов нет!");
+		}
+			
+			
+		//_а Вывод данных в зависимости от наличия отрицательных элементов	
+		if (rightKeyIndex - leftKeyIndex > 1) {
+			System.out.print("Номер крайнего левого: " + leftKeyIndex + "\nНомер крайнего правого: " + rightKeyIndex);
+			System.out.println();
+			
+			//_а Сортировка
+			for (int i=leftKeyIndex; i<=rightKeyIndex; i++) {
+				int k = i;
+				int x = randomArray[i];
+				
+				for (int j=i+1; j<=rightKeyIndex; j++) {
+					if (randomArray[j] < x) {
+						k = j;
+						x = randomArray[j];
+						randomArray[k] = randomArray[i];
+						randomArray[i]  =  x;
+					}
+				}
+				System.out.print(x + " ");
+			}
+			
+		} else {
+			System.out.println("Отрицательный элемент только один, или 2 но рядом!\nНечего сортировать.");
+		}
+
+	}
+
+}

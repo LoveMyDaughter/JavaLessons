@@ -1,0 +1,54 @@
+package lesson13;
+
+/*_а Найти факториал числа.
+Использовать Generic, ввод чисел с консоли, обработку try-catch
+Числа должны быть объектами
+*/
+
+//_а ДОРАБОТАТЬ: заменить цикл for - iterator
+
+import java.util.Scanner;
+
+public class Factorial <T> {
+
+	private Scanner readNumber;
+	private String inputNumber;
+	private Integer number, factorial;
+	
+	public static void main(String[] args) {
+				
+		//_а Экземпляры класса Factorial 
+		//_а Создавая экземпляры, можем отслеживать значения переменных в отладчике
+		Factorial <String> stringFactorial = new Factorial();
+		Factorial <Scanner> scannerFactorial = new Factorial();
+		Factorial <Integer> integerFactorial = new Factorial();
+		
+		//_а Присвоить начальное значение для возможности прохода по циклу - расчета факториала
+		integerFactorial.factorial = 1;
+				
+		scannerFactorial.readNumber = new Scanner(System.in);
+		
+		System.out.println("Введите число : ");
+		stringFactorial.inputNumber = scannerFactorial.readNumber.nextLine();
+		
+					
+		//_а //_а Если введенное с консоли - число
+		//_а переводим его в тип int
+		try {
+			integerFactorial.number = Integer.parseInt(stringFactorial.inputNumber);
+			 
+			//_а Вычисление факториала
+			for (int i=1; i<=integerFactorial.number; i++) {
+				integerFactorial.factorial *= i;
+							
+			}
+			
+			System.out.println(integerFactorial.factorial.intValue());
+				
+		} catch (NumberFormatException e) {
+			System.out.println("Вы ввели не целое число!");
+		}
+		
+	}
+
+}

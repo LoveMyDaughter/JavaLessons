@@ -1,0 +1,85 @@
+package lesson14;
+
+/*_а Показать на экран с m по n символов строки, введенной пользователем
+ *  и записать данный отрезок в другой массив. (m и n также вводятся пользователем)
+ * 
+ */
+
+import java.util.Scanner;
+
+public class PartOfArray {
+
+	private static Scanner scanner;
+	private static int m,n;
+
+	public static void main(String[] args) {
+		
+		scanner = new Scanner(System.in);
+		
+		//_а Изначальный массив, в который будем копировать отрезок строки
+		char [] defaultArray; 
+		
+		//_а Ввод данных пользователем
+			System.out.print("Введите строку: ");
+			
+			//_а Строка, введенная пользователем
+			String phraze = scanner.nextLine();
+		
+			//_а Количество символов введенной строки
+			int phrazeLength = phraze.length();
+						
+			try {
+				System.out.print("Введите номер первого символа: ");
+				
+				//_а Начальный символ - m
+				m = scanner.nextInt();
+						
+				System.out.print("Введите номер последнего символа: ");
+			
+				//_а последний символ - n
+				n = scanner.nextInt();
+				
+				
+				//_а Проверка коректности m и n
+				if ( (m >=0) & (m <= phrazeLength) ) {
+					if ( (n >= m) & (n <= phrazeLength) ) {
+						
+						//_а Перевод строки в массив char[]
+						char [] inputArray = phraze.toCharArray();
+						
+						//_а Инициализируем начальный массив длиной - в отрезок строки
+						defaultArray = new char [n-m+1];
+						
+						//_а Перенос элементов из введенного массива - в начальный
+						int j=0;
+						for (int i=m-1; i<n; i++) {
+							defaultArray[j] = inputArray[i];
+							System.out.print(defaultArray[j]);
+							
+							j++;
+						}
+						
+					} else {
+						System.out.println("Номер последнего символа выходит за допустимый диапазон.");
+					}
+				} else {
+					System.out.println("Номер первого символа выходит за диапазон строки.");
+				}
+				
+				//
+				
+				
+				
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("Неверный формат!");
+				System.exit(0);
+			}
+		
+		//_а -конец блока
+			
+			
+		
+			
+	}
+
+}

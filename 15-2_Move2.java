@@ -1,0 +1,201 @@
+package lesson15;
+
+/* Дана матрица порядка MxN (M строк, N столбцов). Необходимо заполнить ее значениями и написать функцию,
+ *  осуществляющую циклический сдвиг строк и/или столбцов массива указанное количество раз 
+ *  и в указанную сторону.
+*/
+// наполнение матрицы - реализуем через метод
+// вывод матрицы - реализуем через метод
+
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Random;
+
+import java.util.Scanner;
+
+public class Move2 {
+
+	// размерность матрицы
+	private static int m, n;
+	
+	private static int direction;
+	
+	// кол-во сдвигов
+	private static int quantity;
+	
+	private static boolean correctDirection, correctQuantity;
+	
+	// создаем строку-алфавит (набор символов)
+	private static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+	
+	// длина строки нужна для границы рендомного выбора символов из строки-алфавита
+	private static int length = alphabet.length();
+	
+	private static Random r;
+	private static Scanner scanner;
+	
+	// список list являет собой матрицу
+	private static ArrayList <ArrayList<Character>> list;
+	
+	// метод - наполняем матрицу
+	public static void fill (ArrayList <ArrayList<Character>> list) {
+		for (int i=0; i<m; i++) {
+			list.add(new ArrayList<Character>());
+			for (int j=0; j<n; j++) {
+				list.get(i).add(j, alphabet.charAt(r.nextInt(length)));
+			}			
+		}
+	}
+	
+	// метод - вывод матрицы
+	public static void showMatrix(ArrayList <ArrayList<Character>> list) {
+		for (ArrayList<Character> e : list) {			
+			System.out.print(e + "\n");			
+		}
+	}
+	
+	// метод - добавление строки (сдвиг вниз)
+	public static void insertLine(ArrayList <ArrayList<Character>> list) {
+		list.add(0, new ArrayList<Character>());
+	}
+	
+	// метод - удаление строки (сдвиг вверх)
+	public static void deleteLine(ArrayList <ArrayList<Character>> list) {
+		list.remove(0);
+	}
+		
+	// метод - добавление столбца (сдвиг вправо)
+	public static void insertColumn(ArrayList <ArrayList<Character>> list) {
+		for (ArrayList<Character> element : list) {
+			element.add(0, ' ');
+		}
+	}
+	
+	// метод - удаление столбца (сдвиг влево)
+	public static void deleteColumn(ArrayList <ArrayList<Character>> list) {
+		for (ArrayList<Character> element : list) {
+			element.remove(0);
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		m = 4;	// строк
+		n = 7;	// столбцов		
+		r = new Random();	
+		
+		list = new ArrayList();
+		
+		// наполняем матрицу
+		fill(list);
+		
+		// выводим матрицу
+		System.out.println("Матрица:");
+		showMatrix(list);
+		System.out.println();
+				
+		// считываем направление добавляемой строки
+		while (! correctDirection) {
+			System.out.println("Куда сдвигать?"
+					+ "\n 1. Вверх (удалить строки)."
+					+ "\n 2. Вниз (добавить строки)."
+					+ "\n 3. Влево (удалить столбцы)."
+					+ "\n 4. Вправо (добавить столбцы).");
+			scanner = new Scanner(System.in);
+			try {
+				direction = scanner.nextInt();
+				if (direction == 1 || direction == 2 ||
+					direction == 3 || direction == 4) {
+					correctDirection = true;
+				} else {
+					System.out.println("Введите от 1 до 4"); 	
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Введите число!");
+			}
+		}
+		
+		// ограничения количества сдвигов
+		while (! correctQuantity) {
+			System.out.println("Сколько раз?");
+			scanner = new Scanner(System.in);
+			try {
+				quantity = scanner.nextInt();
+				if (quantity > 0) {
+					// ограничить сдвиг вверх количеством строк
+					if (direction == 1) {
+						if ( quantity <= list.size()) {
+							correctQuantity = true;
+						} else {
+						System.out.println("Введите от 1 до " + list.size());
+						continue;
+							}
+					}	
+					// ограничить сдвиг влево количеством столбцов
+					if (direction == 3) {
+						if (quantity <= list.get(0).size()) {
+							correctQuantity = true;
+						} else {
+							System.out.println("Введите от 1 до " + list.get(0).size());
+							continue;
+							}	
+					}	
+					correctQuantity = true;
+				}					
+			} catch (InputMismatchException e) {
+				System.out.println("Введите натуральное число!");
+			}
+		}
+		
+		// обработка матрицы в зависимости от выбранного направления
+		switch (direction) {				
+			// сдвиг вверх
+			case 1: {
+				for (int i=0; i<quantity; i++) {
+					System.out.println("Сдвиг вверх - " + (i+1));
+					deleteLine(list);
+					showMatrix(list);
+					System.out.println();
+				}
+				break;
+			}				
+			// сдвиг вниз
+			case 2: {
+				for (int i=0; i<quantity; i++) {
+					System.out.println("Сдвиг вниз - " + (i+1));
+					insertLine(list);
+					showMatrix(list);
+					System.out.println();
+				}
+				break;
+			}			
+			// сдвиг влево 
+			case 3: {
+				for (int i=0; i<quantity; i++) {
+					System.out.println("Сдвиг влево - " + (i+1));
+					deleteColumn(list);
+					showMatrix(list);
+					System.out.println();
+				}
+				break;
+			}			
+			// сдвиг вправо 
+			case 4: {
+				for (int i=0; i<quantity; i++) {
+					System.out.println("Сдвиг вправо - " + (i+1));
+					insertColumn(list);
+					showMatrix(list);
+					System.out.println();
+				}
+				break;
+			}			
+			default : {
+				break;
+			}					
+		}
+		
+	}
+
+}
