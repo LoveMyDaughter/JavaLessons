@@ -1,0 +1,39 @@
+{% extends 'layouts.html' %}
+
+
+{% block title_suffix %}Users add/edit{% endblock title_suffix %}
+
+{% block navbar_li %}
+    <li><a href="{{ url_for('user_page') }}">Users page</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+{% endblock navbar_li %}
+
+{% block content %}
+    <h1>User modifying form</h1>
+    <div class="col-md-5">
+		<form class="form" method="post" role="form" action="{{ route_to }}">
+		  {{ form.hidden_tag() }}
+		  {{ wtf.form_errors(form, hiddens="only") }}
+
+		  {{ wtf.form_field(form.name) }}
+		  {{ wtf.form_field(form.alias) }}
+		  {{ wtf.form_field(form.email) }}
+			{% if remove_role_change %}
+		  {{ wtf.form_field(form.role_id) }}
+			{% endif %}
+		  <input class="btn btn-success" type="submit" name="save" value="Save">
+            {% if not user.delete_date %}
+                <a class="btn btn-danger" data-toggle="modal" data-target="#deletion" data-elem-id="{{ user.id }}"
+                       data-name="{{ user.name }}" data-func-name="delete" data-elem-name="user">Delete</a>
+            {% else %}
+                    <a class="btn btn-success" data-toggle="modal" data-target="#deletion" data-elem-id="{{ user.id }}"
+                       data-name="{{ user.name }}" data-func-name="restore" data-elem-name="user">Restore</a>
+            {% endif %}
+		</form>
+    <br>
+    <a href="{{ url_for('user_page') }}" class="btn btn-info">Return to users page</a>
+    </div>
+
+    {% include 'modal_confirm.html' %}
+
+{% endblock %}

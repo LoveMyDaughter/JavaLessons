@@ -1,0 +1,28 @@
+version: "3"
+services:
+  postgres-db:
+    image: ss_ita_db:0.0.1
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    expose:
+      - "5432"
+  flask-backend:
+    image: ss_ita_backend:0.0.1
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on: 
+      - postgres-db
+  django-frontend:
+    image: ss_ita_frontend:0.0.1
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on: 
+      - flask-backend
+
